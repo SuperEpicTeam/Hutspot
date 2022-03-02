@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZXing;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QRCodeScanner : MonoBehaviour
 {
@@ -13,23 +14,28 @@ public class QRCodeScanner : MonoBehaviour
     [SerializeField] private bool isCamAvailible;
 
     private WebCamTexture cameraTexture;
+    private Canvas uiCanvas;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        uiCanvas = GetComponentInChildren<Canvas>();
         SetUpCamera();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateCameraRenderer();
-        Scan();
+        if (isCamAvailible)
+        {
+            UpdateCameraRenderer();
+            Scan();
+        }
     }
-    
+
     private void UpdateCameraRenderer()
     {
-        if(isCamAvailible == false)
+        if (isCamAvailible == false)
         {
             return;
         }
@@ -38,7 +44,6 @@ public class QRCodeScanner : MonoBehaviour
 
         int orientation = -cameraTexture.videoRotationAngle;
         rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
-
     }
 
     private void SetUpCamera()
@@ -50,9 +55,9 @@ public class QRCodeScanner : MonoBehaviour
             isCamAvailible = false;
             return;
         }
-        for (int i = 0; i < devices.Length;i++)
+        for (int i = 0; i < devices.Length; i++)
         {
-            if (devices[i].isFrontFacing==false)
+            if (devices[i].isFrontFacing == false)
             {
                 cameraTexture = new WebCamTexture(devices[i].name, (int)scanZone.rect.width, (int)-scanZone.rect.height);
             }
@@ -74,12 +79,10 @@ public class QRCodeScanner : MonoBehaviour
         {
             IBarcodeReader barcodeReader = new BarcodeReader();
             Result result = barcodeReader.Decode(cameraTexture.GetPixels32(), cameraTexture.width, cameraTexture.height);
-            if(result != null)
+            if (result != null)
             {
-                if (result.Text == "Monumentje1")
-                {
-                    scanZone.GetComponent<Image>().color = new Color32(255, 255, 225, 100);
-                }
+                //StopScanning();
+                SceneManager.LoadScene(result.Text);
             }
             else
             {
@@ -90,5 +93,12 @@ public class QRCodeScanner : MonoBehaviour
         {
             Debug.Log("Failed in try");
         }
+    }
+
+    private void StopScanning()
+    {
+        rawImageBackground.texture = new Texture2D(0, 0);
+        isCamAvailible = false;
+        cameraTexture.Stop();
     }
 }
