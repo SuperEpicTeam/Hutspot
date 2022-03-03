@@ -81,8 +81,8 @@ public class QRCodeScanner : MonoBehaviour
             Result result = barcodeReader.Decode(cameraTexture.GetPixels32(), cameraTexture.width, cameraTexture.height);
             if (result != null)
             {
-                //StopScanning();
-                SceneManager.LoadScene(result.Text);
+                StopScanning();
+                //SceneManager.LoadScene(result.Text);
             }
             else
             {
@@ -99,6 +99,7 @@ public class QRCodeScanner : MonoBehaviour
     {
         rawImageBackground.texture = new Texture2D(0, 0);
         isCamAvailible = false;
+        uiCanvas.gameObject.SetActive(false);
         cameraTexture.Stop();
     }
 }
