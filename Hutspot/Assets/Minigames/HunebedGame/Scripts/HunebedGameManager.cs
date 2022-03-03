@@ -8,6 +8,9 @@ namespace Hutspot.Minigames.HunebedGame
 		
 		public int Score { get; private set; }
 
+		[SerializeField] private HunebedBehaviour _hunebedPrefab;
+		private HunebedBehaviour _currentHunebed;
+
 		private void Awake()
 		{
 			if(Instance == null)
@@ -20,9 +23,16 @@ namespace Hutspot.Minigames.HunebedGame
 			}
 		}
 
-		private void Update()
+		private void Start()
 		{
-
+			_currentHunebed = Instantiate(_hunebedPrefab, transform.position, Quaternion.identity);
+			_currentHunebed.OnLand += OnLand;
+		}
+		
+		private void OnLand()
+		{
+			_currentHunebed.OnLand -= OnLand;
+			Start();
 		}
 	}
 }
