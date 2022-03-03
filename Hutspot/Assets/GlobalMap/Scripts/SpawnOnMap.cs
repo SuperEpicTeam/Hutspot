@@ -40,7 +40,7 @@
 			}
 		}
 
-		private void Update()
+		public virtual void Update()
 		{
 			int count = _spawnedObjects.Count;
 			for (int i = 0; i < count; i++)
