@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ZXing;
 using UnityEngine.UI;
@@ -7,26 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class QRCodeScanner : MonoBehaviour
 {
-    [SerializeField] private RawImage rawImageBackground;
-    [SerializeField] private AspectRatioFitter aspectRatioFitter;
-    [SerializeField] private RectTransform scanZone;
+    [SerializeField] private RawImage _rawImageBackground;
+    [SerializeField] private AspectRatioFitter _aspectRatioFitter;
+    [SerializeField] private RectTransform _scanZone;
 
-    [SerializeField] private bool isCamAvailible;
+    [SerializeField] private bool _isCamAvailible;
 
-    private WebCamTexture cameraTexture;
-    private Canvas uiCanvas;
+    [SerializeField] private Canvas _uiCanvas;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        uiCanvas = GetComponentInChildren<Canvas>();
-        SetUpCamera();
-    }
+    private WebCamTexture _cameraTexture;
 
     // Update is called once per frame
     void Update()
     {
-        if (isCamAvailible)
+        if (_isCamAvailible)
         {
             UpdateCameraRenderer();
             Scan();
@@ -35,42 +27,40 @@ public class QRCodeScanner : MonoBehaviour
 
     private void UpdateCameraRenderer()
     {
-        if (isCamAvailible == false)
+        if (_isCamAvailible == false)
         {
             return;
         }
-        float ratio = (float)cameraTexture.width / (float)cameraTexture.height;
-        aspectRatioFitter.aspectRatio = ratio;
 
-        int orientation = -cameraTexture.videoRotationAngle;
-        rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
+        float ratio = (float)_cameraTexture.width / (float)_cameraTexture.height;
+        _aspectRatioFitter.aspectRatio = ratio;
+
+        int orientation = -_cameraTexture.videoRotationAngle;
+        _rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
     }
 
-    private void SetUpCamera()
+    public void  Camera()
     {
+        _uiCanvas.gameObject.SetActive(true);
         WebCamDevice[] devices = WebCamTexture.devices;
 
         if (devices.Length == 0)
         {
-            isCamAvailible = false;
+            _isCamAvailible = false;
             return;
         }
+
         for (int i = 0; i < devices.Length; i++)
         {
             if (devices[i].isFrontFacing == false)
             {
-                cameraTexture = new WebCamTexture(devices[i].name, (int)scanZone.rect.width, (int)-scanZone.rect.height);
+                _cameraTexture = new WebCamTexture(devices[i].name, (int)_scanZone.rect.width, (int)-_scanZone.rect.height);
             }
         }
 
-        cameraTexture.Play();
-        rawImageBackground.texture = cameraTexture;
-        isCamAvailible = true;
-    }
-
-    public void OnClickScan()
-    {
-        Scan();
+        _cameraTexture.Play();
+        _rawImageBackground.texture = _cameraTexture;
+        _isCamAvailible = true;
     }
 
     private void Scan()
@@ -78,11 +68,11 @@ public class QRCodeScanner : MonoBehaviour
         try
         {
             IBarcodeReader barcodeReader = new BarcodeReader();
-            Result result = barcodeReader.Decode(cameraTexture.GetPixels32(), cameraTexture.width, cameraTexture.height);
+            Result result = barcodeReader.Decode(_cameraTexture.GetPixels32(), _cameraTexture.width, _cameraTexture.height);
+
             if (result != null)
             {
-                StopScanning();
-                //SceneManager.LoadScene(result.Text);
+                SceneManager.LoadScene(result.Text);
             }
             else
             {
@@ -95,11 +85,10 @@ public class QRCodeScanner : MonoBehaviour
         }
     }
 
-    private void StopScanning()
+    public void StopScanning()
     {
-        rawImageBackground.texture = new Texture2D(0, 0);
-        isCamAvailible = false;
-        uiCanvas.gameObject.SetActive(false);
-        cameraTexture.Stop();
+        _rawImageBackground.texture = new Texture2D(0, 0);
+        _uiCanvas.gameObject.SetActive(false);
+        _cameraTexture.Stop();
     }
 }

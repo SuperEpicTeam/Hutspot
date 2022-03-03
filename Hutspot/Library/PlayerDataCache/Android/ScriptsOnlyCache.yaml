@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -23,11 +24,51 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.AspectRatioFitter
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
   sceneClasses:
+    Assets/QRCodeScanner/Scenes/Monumentje1.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11368}
+    - Class: 114
+      Script: {instanceID: 11854}
+    - Class: 114
+      Script: {instanceID: 12724}
+    - Class: 114
+      Script: {instanceID: 13348}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/QRCodeScanner/Scenes/SampleScene.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -48,29 +89,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11384}
+      Script: {instanceID: 11368}
     - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 11630}
     - Class: 114
-      Script: {instanceID: 11870}
+      Script: {instanceID: 11854}
     - Class: 114
-      Script: {instanceID: 12142}
+      Script: {instanceID: 12126}
     - Class: 114
-      Script: {instanceID: 12186}
+      Script: {instanceID: 12170}
     - Class: 114
-      Script: {instanceID: 12632}
+      Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12738}
+      Script: {instanceID: 12692}
     - Class: 114
-      Script: {instanceID: 13024}
+      Script: {instanceID: 12724}
     - Class: 114
-      Script: {instanceID: 13042}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13362}
+      Script: {instanceID: 13028}
     - Class: 114
-      Script: {instanceID: 13568}
+      Script: {instanceID: 13262}
     - Class: 114
-      Script: {instanceID: 13840}
+      Script: {instanceID: 13348}
+    - Class: 114
+      Script: {instanceID: 13554}
+    - Class: 114
+      Script: {instanceID: 13826}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -78,6 +123,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -304,7 +351,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: 6e05bb0f2c979bac8f0bc81658fcba3c
+      Hash: 5282e2f9c80b9f4c69d9267639ab9e5e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: QRCodeScanner
@@ -515,4 +562,5 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/QRCodeScanner/Scenes/SampleScene.unity
+  - Assets/QRCodeScanner/Scenes/Monumentje1.unity
   playerPath: D:/unity projects/HutspotBuilds/Hutspot.apk
