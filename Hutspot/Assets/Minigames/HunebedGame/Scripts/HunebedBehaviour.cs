@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hutspot.Minigames.HunebedGame
@@ -66,7 +67,7 @@ namespace Hutspot.Minigames.HunebedGame
 		{
 			if (_rigidBody != null)
 			{
-				BreakStone(collision);
+				BreakStone();
 				ShowVerticleStones();
 
 				Destroy(_rigidBody);
@@ -74,33 +75,39 @@ namespace Hutspot.Minigames.HunebedGame
 			}
 		}
 
-		private void BreakStone(Collision2D collision)
+		private void BreakStone()
 		{
 			//Make the parts of the stone outside the bounds break off
-			ContactPoint2D? xMin = null;
-			ContactPoint2D? xMax = null;
+			Vector2 xMin = Vector2.positiveInfinity;
+			Vector2 xMax = Vector2.negativeInfinity;
 
 			Collider2D overlapCollider = Physics2D.OverlapBox(transform.position, _collider.size * 1.1f, 0f);
-			Collider2D[] collidersInOverlap = new Collider2D[2];
+			List<Collider2D> collidersInOverlap = new List<Collider2D>();
 
-			print(overlapCollider.OverlapCollider(new ContactFilter2D().NoFilter(), collidersInOverlap));
-			print(collidersInOverlap);
+			overlapCollider.OverlapCollider(new ContactFilter2D().NoFilter(), collidersInOverlap);
 
 			foreach (Collider2D collider in collidersInOverlap)
 			{
-				foreach (ContactPoint2D contact in collision.contacts)
-				{
-					xMin = !xMin.HasValue ? contact : xMin.Value.point.x > contact.point.x ? contact : xMin;
-					xMax = !xMax.HasValue ? contact : xMax.Value.point.x < contact.point.x ? contact : xMax;
-				}
+				Vector2 min = collider.bounds.min;
+				Vector2 max = collider.bounds.max;
+
+				xMin = min.x < xMin.x ? min : xMin;
+				xMax = max.x > xMax.x ? max : xMax;
 			}
 
-			float length = xMax.Value.point.x - xMin.Value.point.x;
+			Vector2 boundsMin = _collider.bounds.min;
+			Vector2 boundsMax = _collider.bounds.max;
 
-			float leftCutOff = -(-(_collider.bounds.size.x / 2) - transform.InverseTransformPoint(xMin.Value.point).x) / _pixelSizeWorldSpace;
-			float rightCutOff = (_collider.bounds.size.x / 2 + transform.InverseTransformPoint(xMax.Value.point).x) / _pixelSizeWorldSpace - leftCutOff;
+			xMin = xMin.x < boundsMin.x ? boundsMin : xMin;
+			xMax = xMax.x > boundsMax.x ? boundsMax : xMax;
 
-			transform.position = new Vector3(xMin.Value.point.x + length / 2, transform.position.y);
+			float length = xMax.x - xMin.x;
+
+			float leftCutOff = -(-(_collider.bounds.size.x / 2) - transform.InverseTransformPoint(xMin).x) / _pixelSizeWorldSpace;
+			float rightCutOff = (_collider.bounds.size.x / 2 + transform.InverseTransformPoint(xMax).x) / _pixelSizeWorldSpace - leftCutOff;
+
+			transform.position = new Vector3(xMin.x + length / 2, transform.position.y);
+			print($"pos: {xMin.x + length / 2} \n xMin: {xMin.x}");
 
 			Rect bounds = new Rect(leftCutOff, 0f, rightCutOff, _hunebedStoneSprite.height);
 			_renderer.sprite = Sprite.Create(_hunebedStoneSprite, bounds, new Vector2(0.5f, 0.5f), 100f);
