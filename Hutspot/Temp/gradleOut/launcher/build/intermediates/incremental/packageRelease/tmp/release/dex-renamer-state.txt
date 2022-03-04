@@ -1,4 +1,0 @@
-#Thu Mar 03 15:24:23 CET 2022
-base.0=D\:\\unity projects\\Hutspot\\Hutspot\\Temp\\gradleOut\\launcher\\build\\intermediates\\transforms\\dexMerger\\release\\0
-path.0=classes.dex
-renamed.0=classes.dex
