@@ -59,19 +59,21 @@ public class QRCodeScanner : MonoBehaviour
 		{
 			_isCamAvailible = false;
 		}
-		else { }
-
-		for (int i = 0; i < devices.Length; i++)
+		else 
 		{
-			if (devices[i].isFrontFacing == false)
+			for (int i = 0; i < devices.Length; i++)
 			{
-				_cameraTexture = new WebCamTexture(devices[i].name, (int)_scanZone.rect.width, (int)-_scanZone.rect.height);
+				if (devices[i].isFrontFacing == false)
+				{
+					_cameraTexture = new WebCamTexture(devices[i].name, (int)_scanZone.rect.width, (int)-_scanZone.rect.height);
+				}
 			}
+
+			_cameraTexture.Play();
+			_rawImageBackground.texture = _cameraTexture;
+			_isCamAvailible = true;
 		}
 
-		_cameraTexture.Play();
-		_rawImageBackground.texture = _cameraTexture;
-		_isCamAvailible = true;
 	}
 
 	private void Scan()
