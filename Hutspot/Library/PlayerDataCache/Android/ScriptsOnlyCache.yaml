@@ -69,7 +69,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
-    Assets/QRCodeScanner/Scenes/SampleScene.unity:
+    Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -351,7 +351,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: 5282e2f9c80b9f4c69d9267639ab9e5e
+      Hash: ed82b9217617f53b228007f3392b7edb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: QRCodeScanner
@@ -561,6 +561,6 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/QRCodeScanner/Scenes/SampleScene.unity
+  - Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity
   - Assets/QRCodeScanner/Scenes/Monumentje1.unity
   playerPath: D:/unity projects/HutspotBuilds/Hutspot.apk

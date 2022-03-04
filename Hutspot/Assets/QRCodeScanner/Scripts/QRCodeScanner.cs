@@ -1,95 +1,105 @@
 using UnityEngine;
 using ZXing;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class QRCodeScanner : MonoBehaviour
 {
-    [SerializeField] private RawImage _rawImageBackground;
-    [SerializeField] private AspectRatioFitter _aspectRatioFitter;
-    [SerializeField] private RectTransform _scanZone;
+	[SerializeField] private RawImage _rawImageBackground;
+	[SerializeField] private AspectRatioFitter _aspectRatioFitter;
+	[SerializeField] private RectTransform _scanZone;
 
-    [SerializeField] private bool _isCamAvailible;
+	[SerializeField] private bool _isCamAvailible;
 
-    [SerializeField] private Canvas _uiCanvas;
+	[SerializeField] private Canvas _uiCanvas;
+	[SerializeField] private TextMeshProUGUI _scannerPlayerFeedback;
 
-    private WebCamTexture _cameraTexture;
+	[SerializeField] private Button _activationButton;
+	[SerializeField] private Button _deactivationButton;
 
-    void Update()
-    {
-        if (_isCamAvailible)
-        {
-            UpdateCameraRenderer();
-            Scan();
-        }
-    }
+	private WebCamTexture _cameraTexture;
 
-    //Update the orientation and aspect ratio of the camera footage.
-    private void UpdateCameraRenderer()
-    {
-        if (_isCamAvailible == false)
-        {
-            return;
-        }
+	private void Awake()
+	{
+		_activationButton.onClick.AddListener(SetUpCamera);
+		_deactivationButton.onClick.AddListener(StopScanning);
+	}
 
-        float ratio = (float)_cameraTexture.width / (float)_cameraTexture.height;
-        _aspectRatioFitter.aspectRatio = ratio;
+	void Update()
+	{
+		if (_isCamAvailible)
+		{
+			UpdateCameraRenderer();
+			Scan();
+		}
+	}
 
-        int orientation = -_cameraTexture.videoRotationAngle;
-        _rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
-    }
+	/// <summary>
+	/// Update the orientation and aspect ratio of the camera footage.
+	/// </summary>
+	private void UpdateCameraRenderer()
+	{
+		float ratio = _cameraTexture.width / _cameraTexture.height;
+		_aspectRatioFitter.aspectRatio = ratio;
 
-    //Activate Front facing camera on device and show the camera view to the user
-    public void SetUpCamera()
-    {
-        _uiCanvas.gameObject.SetActive(true);
-        WebCamDevice[] devices = WebCamTexture.devices;
+		int orientation = -_cameraTexture.videoRotationAngle;
+		_rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
+	}
 
-        if (devices.Length == 0)
-        {
-            _isCamAvailible = false;
-            return;
-        }
+	/// <summary>
+	/// Activate Front facing camera on device and show the camera view to the user
+	/// </summary>
+	private void SetUpCamera()
+	{
+		_uiCanvas.gameObject.SetActive(true);
+		WebCamDevice[] devices = WebCamTexture.devices;
 
-        for (int i = 0; i < devices.Length; i++)
-        {
-            if (devices[i].isFrontFacing == false)
-            {
-                _cameraTexture = new WebCamTexture(devices[i].name, (int)_scanZone.rect.width, (int)-_scanZone.rect.height);
-            }
-        }
+		if (devices.Length == 0)
+		{
+			_isCamAvailible = false;
+		}
+		else { }
 
-        _cameraTexture.Play();
-        _rawImageBackground.texture = _cameraTexture;
-        _isCamAvailible = true;
-    }
+		for (int i = 0; i < devices.Length; i++)
+		{
+			if (devices[i].isFrontFacing == false)
+			{
+				_cameraTexture = new WebCamTexture(devices[i].name, (int)_scanZone.rect.width, (int)-_scanZone.rect.height);
+			}
+		}
 
-    private void Scan()
-    {
-        try
-        {
-            IBarcodeReader barcodeReader = new BarcodeReader();
-            Result result = barcodeReader.Decode(_cameraTexture.GetPixels32(), _cameraTexture.width, _cameraTexture.height);
+		_cameraTexture.Play();
+		_rawImageBackground.texture = _cameraTexture;
+		_isCamAvailible = true;
+	}
 
-            if (result != null)
-            {
-                SceneManager.LoadScene(result.Text);
-            }
-            else
-            {
-                Debug.Log("Failed to read QR code");
-            }
-        }
-        catch
-        {
-            Debug.Log("Failed in try");
-        }
-    }
+	private void Scan()
+	{
+		try
+		{
+			IBarcodeReader barcodeReader = new BarcodeReader();
+			Result result = barcodeReader.Decode(_cameraTexture.GetPixels32(), _cameraTexture.width, _cameraTexture.height);
 
-    public void StopScanning()
-    {
-        _rawImageBackground.texture = new Texture2D(0, 0);
-        _uiCanvas.gameObject.SetActive(false);
-        _cameraTexture.Stop();
-    }
+			if (result != null)
+			{
+				SceneManager.LoadScene(result.Text);
+			}
+			else
+			{
+				_scannerPlayerFeedback.text = "Failed to read QR code";
+			}
+		}
+		catch
+		{
+			_scannerPlayerFeedback.text = "Failed to read QR code";
+		}
+	}
+
+	private void StopScanning()
+	{
+		_rawImageBackground.texture = new Texture2D(0, 0);
+		_uiCanvas.gameObject.SetActive(false);
+		_cameraTexture.Stop();
+	}
 }
