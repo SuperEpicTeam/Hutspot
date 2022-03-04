@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity
+- path: Assets/StampSystem/Scenes/StampSystem.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
