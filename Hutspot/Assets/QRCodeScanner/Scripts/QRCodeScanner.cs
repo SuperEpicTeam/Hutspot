@@ -15,7 +15,6 @@ public class QRCodeScanner : MonoBehaviour
 
     private WebCamTexture _cameraTexture;
 
-    // Update is called once per frame
     void Update()
     {
         if (_isCamAvailible)
@@ -25,6 +24,7 @@ public class QRCodeScanner : MonoBehaviour
         }
     }
 
+    //Update the orientation and aspect ratio of the camera footage.
     private void UpdateCameraRenderer()
     {
         if (_isCamAvailible == false)
@@ -39,7 +39,8 @@ public class QRCodeScanner : MonoBehaviour
         _rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
     }
 
-    public void  Camera()
+    //Activate Front facing camera on device and show the camera view to the user
+    public void SetUpCamera()
     {
         _uiCanvas.gameObject.SetActive(true);
         WebCamDevice[] devices = WebCamTexture.devices;
