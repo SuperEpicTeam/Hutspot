@@ -17,7 +17,10 @@
 		string[] _locationStrings;
 		Vector2d[] _locations;
 
-		[SerializeField]
+        [SerializeField]
+        string[] _markerTags;
+
+        [SerializeField]
 		float _spawnScale = 100f;
 
 		[SerializeField]
@@ -25,7 +28,7 @@
 
 		List<GameObject> _spawnedObjects;
 
-		void Start()
+		public virtual void Start()
 		{
 			_locations = new Vector2d[_locationStrings.Length];
 			_spawnedObjects = new List<GameObject>();
@@ -37,6 +40,10 @@
 				instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
 				instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
 				_spawnedObjects.Add(instance);
+                
+                //instance.tag = _markerTags[i];
+                var mapMarkerPin = instance.transform.GetChild(0);
+                mapMarkerPin.tag = _markerTags[i];
 			}
 		}
 

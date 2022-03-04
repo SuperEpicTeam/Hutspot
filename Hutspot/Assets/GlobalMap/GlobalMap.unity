@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 555018385}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,6 +400,12 @@ MonoBehaviour:
   _map: {fileID: 555018383}
   _locationStrings:
   - 52.9167, 6.5833
+  - 52.930676, 6.798667
+  - 52.7167, 6.46667
+  _markerTags:
+  - Drenthe
+  - Hunebed
+  - HaringHappen
   _spawnScale: 30
   _markerPrefab: {fileID: 1839187062704024, guid: 9b5b1b761a8994c07affd0a05396633b,
     type: 3}
@@ -712,6 +718,10 @@ PrefabInstance:
     - target: {fileID: 1393483683185582, guid: b95c449128f3b44bca8b83258c669aa5, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579282941551776, guid: b95c449128f3b44bca8b83258c669aa5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114103084892184410, guid: b95c449128f3b44bca8b83258c669aa5,
         type: 3}
