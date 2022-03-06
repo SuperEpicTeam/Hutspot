@@ -81,33 +81,33 @@ namespace Hutspot.Minigames.HunebedGame
 			Vector2 xMin = Vector2.positiveInfinity;
 			Vector2 xMax = Vector2.negativeInfinity;
 
-			Collider2D overlapCollider = Physics2D.OverlapBox(transform.position, _collider.size * 1.1f, 0f);
-			List<Collider2D> collidersInOverlap = new List<Collider2D>();
-
-			overlapCollider.OverlapCollider(new ContactFilter2D().NoFilter(), collidersInOverlap);
+			Collider2D[] collidersInOverlap = Physics2D.OverlapBoxAll(transform.position, _collider.size * 1.1f, 0f);
 
 			foreach (Collider2D collider in collidersInOverlap)
 			{
-				Vector2 min = collider.bounds.min;
-				Vector2 max = collider.bounds.max;
+				if(collider.tag.CompareTo("Player") != 0)
+				{
+					Vector2 min = collider.transform.position - collider.bounds.extents;
+					Vector2 max = collider.transform.position + collider.bounds.extents;
 
-				xMin = min.x < xMin.x ? min : xMin;
-				xMax = max.x > xMax.x ? max : xMax;
+					xMin = min.x < xMin.x ? min : xMin;
+					xMax = max.x > xMax.x ? max : xMax;
+				}
 			}
 
-			Vector2 boundsMin = _collider.bounds.min;
-			Vector2 boundsMax = _collider.bounds.max;
+			Vector2 boundsMin = transform.position - _collider.bounds.extents;
+			Vector2 boundsMax = transform.position + _collider.bounds.extents;
 
 			xMin = xMin.x < boundsMin.x ? boundsMin : xMin;
 			xMax = xMax.x > boundsMax.x ? boundsMax : xMax;
 
-			float length = xMax.x - xMin.x;
-
 			float leftCutOff = -(-(_collider.bounds.size.x / 2) - transform.InverseTransformPoint(xMin).x) / _pixelSizeWorldSpace;
 			float rightCutOff = (_collider.bounds.size.x / 2 + transform.InverseTransformPoint(xMax).x) / _pixelSizeWorldSpace - leftCutOff;
 
-			transform.position = new Vector3(xMin.x + length / 2, transform.position.y);
-			print($"pos: {xMin.x + length / 2} \n xMin: {xMin.x}");
+			float length = rightCutOff * _pixelSizeWorldSpace;
+
+			transform.SetPositionAndRotation(new Vector3(xMin.x + length / 2, transform.position.y), Quaternion.identity);
+			//print($"\n pos: {xMin.x + length / 2} \n xMin: {xMin.x} \n length: {length}");
 
 			Rect bounds = new Rect(leftCutOff, 0f, rightCutOff, _hunebedStoneSprite.height);
 			_renderer.sprite = Sprite.Create(_hunebedStoneSprite, bounds, new Vector2(0.5f, 0.5f), 100f);
@@ -123,8 +123,8 @@ namespace Hutspot.Minigames.HunebedGame
 			float stoneHeight = _leftVerticleStone.size.y;
 			float yPos = transform.position.y + stoneHeight / 2 + _collider.size.y / 2;
 
-			xLeft += _leftVerticleStone.size.x / 2;
-			xRight -= _rightVerticleStone.size.x / 2;
+			xLeft += _leftVerticleStone.size.x * _leftVerticleStone.transform.localScale.x / 2;
+			xRight -= _rightVerticleStone.size.x * _rightVerticleStone.transform.localScale.x / 2;
 
 			_leftVerticleStone.transform.position = new Vector3(xLeft, yPos);
 			_rightVerticleStone.transform.position = new Vector3(xRight, yPos);
