@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5ba2457459fe44db5df95c0a2a3265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trophyId: 1
-  trophyImage: {fileID: 457665478}
+  _stampId: 1
+  stampImage: {fileID: 457665478}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5ba2457459fe44db5df95c0a2a3265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trophyId: 2
-  trophyImage: {fileID: 652222291}
+  _stampId: 2
+  stampImage: {fileID: 652222291}
 --- !u!114 &652222291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,8 +666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5ba2457459fe44db5df95c0a2a3265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trophyId: 3
-  trophyImage: {fileID: 842531166}
+  _stampId: 3
+  stampImage: {fileID: 842531166}
 --- !u!114 &842531166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,11 +1032,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077a9d6e79b19cc4ba92256074fdd58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trophies:
+  _stamps:
   - {fileID: 457665480}
   - {fileID: 652222290}
   - {fileID: 842531165}
-  _trophyBook: {fileID: 1160418945}
+  _stampBook: {fileID: 1160418945}
   _activationButton: {fileID: 1456979025}
   _deactivationButton: {fileID: 1036426643}
 --- !u!4 &1394663026

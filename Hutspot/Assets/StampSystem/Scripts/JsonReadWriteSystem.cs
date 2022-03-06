@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class JsonReadWriteSystem : MonoBehaviour
 {
-	[SerializeField] private Throphy[] _trophies;
-	[SerializeField] private GameObject _trophyBook;
+	[SerializeField] private Stamp[] _stamps;
+	[SerializeField] private GameObject _stampBook;
 
 	[SerializeField] private Button _activationButton;
 	[SerializeField] private Button _deactivationButton;
@@ -15,74 +15,69 @@ public class JsonReadWriteSystem : MonoBehaviour
 
 	private void Awake()
 	{
-		_activationButton.onClick.AddListener(ShowTrophyBook);
-		_deactivationButton.onClick.AddListener(HideTrophyBook);
+		_activationButton.onClick.AddListener(ShowStampBook);
+		_deactivationButton.onClick.AddListener(HideStampBook);
 	}
 
 	/// <summary>
-	/// Save trophies to the PlayerTrophyDataFile.json file
+	/// Save stamps to the PlayerStampDataFile.json file
 	/// </summary>
 	public void SaveTrophies(int thropyIndex)
 	{
-		TrophyData saveDataNew = new TrophyData();
+		StampData saveDataNew = new StampData();
 
-		string jsonOld = File.ReadAllText(Application.dataPath + "/StampSystem/Scripts/PlayerTrophyDataFile.json");
-		TrophyData saveDataOld = JsonUtility.FromJson<TrophyData>(jsonOld);
+		string jsonOld = File.ReadAllText(Application.dataPath + "/StampSystem/Scripts/PlayerStampDataFile.json");
+		StampData saveDataOld = JsonUtility.FromJson<StampData>(jsonOld);
 		_listToArrayConverter = new List<int>();
 
-		for (int i = 0; i < saveDataOld.GetCollectedTrophies().Length; i++)
+		for (int i = 0; i < saveDataOld._collectedStamps.Length; i++)
 		{
-			if (saveDataOld.GetCollectedTrophies()[i] == thropyIndex)
+			if (saveDataOld._collectedStamps[i] == thropyIndex)
 			{
 				return;
 			}
 			else
 			{
-				_listToArrayConverter.Add(saveDataOld.GetCollectedTrophies()[i]);
+				_listToArrayConverter.Add(saveDataOld._collectedStamps[i]);
 			}
 		}
 
 		_listToArrayConverter.Add(thropyIndex);
-		saveDataNew.SetCollectedTrophies(null);
-		saveDataNew.SetCollectedTrophies(_listToArrayConverter.ToArray());
+
+		saveDataNew._collectedStamps = null;
+		saveDataNew._collectedStamps = _listToArrayConverter.ToArray();
 
 		string jsonNew = JsonUtility.ToJson(saveDataNew, true);
-		File.WriteAllText(Application.dataPath + "/StampSystem/Scripts/PlayerTrophyDataFile.json", jsonNew);
+		File.WriteAllText(Application.dataPath + "/StampSystem/Scripts/PlayerStampDataFile.json", jsonNew);
 	}
 
 	/// <summary>
-	/// Load trophy data and check if the player has collected a trophy.
+	/// Load stamp data and check if the player has collected a stamp.
 	/// </summary>
-	private void LoadTrophies()
+	private void LoadStamps()
 	{
-		string json = File.ReadAllText(Application.dataPath + "/StampSystem/Scripts/PlayerTrophyDataFile.json");
-		TrophyData saveData = JsonUtility.FromJson<TrophyData>(json);
+		string json = File.ReadAllText(Application.dataPath + "/StampSystem/Scripts/PlayerStampDataFile.json");
+		StampData saveData = JsonUtility.FromJson<StampData>(json);
 
-		for (int i = 0; i < _trophies.Length; i++)
+		for (int i = 0; i < _stamps.Length; i++)
 		{
-			for (int j = 0; j < saveData.GetCollectedTrophies().Length; j++)
+			for (int j = 0; j < saveData._collectedStamps.Length; j++)
 			{
-				if (_trophies[i].GetTrophyID() == saveData.GetCollectedTrophies()[j])
+				if (_stamps[i].GetStampID() == saveData._collectedStamps[j])
 				{
-					_trophies[i].ShowTrophy();
+					_stamps[i].ShowStamp();
 				}
 			}
 		}
 	}
 
-	private void ToggleTrophyBook(bool showBook)
+	private void ShowStampBook()
 	{
-		GameObject.Find("Canvas").SetActive(showBook);
-		if (showBook) LoadTrophies();
+		LoadStamps();
+		_stampBook.SetActive(true);
 	}
-
-	private void ShowTrophyBook()
+	private void HideStampBook()
 	{
-		LoadTrophies();
-		_trophyBook.SetActive(true);
-	}
-	private void HideTrophyBook()
-	{
-		_trophyBook.SetActive(false);
+		_stampBook.SetActive(false);
 	}
 }
