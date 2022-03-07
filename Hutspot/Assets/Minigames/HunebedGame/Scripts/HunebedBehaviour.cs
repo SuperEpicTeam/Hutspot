@@ -80,7 +80,7 @@ namespace Hutspot.Minigames.HunebedGame
 			Vector2 xMin = Vector2.positiveInfinity;
 			Vector2 xMax = Vector2.negativeInfinity;
 
-			Collider2D[] collidersInOverlap = Physics2D.OverlapBoxAll(transform.position, _collider.size * 1.05f, 0f);
+			Collider2D[] collidersInOverlap = Physics2D.OverlapBoxAll(transform.position, _collider.size * 1.1f, 0f);
 
 			foreach (Collider2D collider in collidersInOverlap)
 			{
@@ -102,11 +102,11 @@ namespace Hutspot.Minigames.HunebedGame
 
 			float length = Mathf.Abs(xMax.x - xMin.x);
 
-			float leftCutOff = Mathf.Clamp(Mathf.Abs(boundsMin.x) - Mathf.Abs(xMin.x), 0f, _hunebedStoneSprite.width) / _pixelSizeWorldSpace;
-			float rightCutOff = length / _pixelSizeWorldSpace;
+			float x = (xMin.x - boundsMin.x) / _pixelSizeWorldSpace;
+			float width = length / _pixelSizeWorldSpace;
 
-			Rect bounds = new Rect(leftCutOff, 0f, rightCutOff, _hunebedStoneSprite.height);
-			_renderer.sprite = Sprite.Create(_hunebedStoneSprite, bounds, Vector2.one * 0.5f);
+			Rect rect = new Rect(x, 0f, width, _hunebedStoneSprite.height);
+			_renderer.sprite = Sprite.Create(_hunebedStoneSprite, rect, Vector2.one * 0.5f);
 
 			transform.SetPositionAndRotation(new Vector3(xMin.x + length / 2, transform.position.y), Quaternion.identity);
 			_collider.size = new Vector2(length, _collider.size.y);
