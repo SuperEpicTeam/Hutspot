@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/QRCodeScanner/Scenes/Monumentje1.unity
+    path: Assets/QRCodeScanner/Scenes/MonumentjeTest.unity
     guid: 1931db6e72fecef43a0195ab01439227
   m_configObjects: {}
