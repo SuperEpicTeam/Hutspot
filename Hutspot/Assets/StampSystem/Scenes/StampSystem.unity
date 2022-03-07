@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stampId: 1
-  stampImage: {fileID: 457665478}
+  _stampImage: {fileID: 457665478}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stampId: 2
-  stampImage: {fileID: 652222291}
+  _stampImage: {fileID: 652222291}
 --- !u!114 &652222291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stampId: 3
-  stampImage: {fileID: 842531166}
+  _stampImage: {fileID: 842531166}
 --- !u!114 &842531166
 MonoBehaviour:
   m_ObjectHideFlags: 0

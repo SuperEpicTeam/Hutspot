@@ -4,11 +4,11 @@ using UnityEngine.UI;
 public class Stamp : MonoBehaviour
 {
 	[SerializeField] private int _stampId;
-	[SerializeField] private Image stampImage;
+	[SerializeField] private Image _stampImage;
 
 	public void ShowStamp()
 	{
-		stampImage.color = Color.green;
+		_stampImage.color = Color.green;
 	}
 
 	public int GetStampID()
