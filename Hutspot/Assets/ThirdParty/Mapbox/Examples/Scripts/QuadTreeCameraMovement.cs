@@ -141,7 +141,7 @@
                 zoom = Mathf.Clamp(_mapManager.Zoom, Mathf.Max(0.0f, Mathf.Min(_mapManager.Zoom + zoomFactor * _zoomSpeed, 21.0f)), maxZoomer);
             }
 
-                Debug.Log(maxZoomer);
+                Debug.Log(zoom);
             if (Math.Abs(zoom - _mapManager.Zoom) > 0.0f)
 			{
 				_mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
