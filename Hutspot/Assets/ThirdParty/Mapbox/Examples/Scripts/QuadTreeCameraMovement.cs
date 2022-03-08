@@ -32,6 +32,7 @@
 		private bool _isInitialized = false;
 		private Plane _groundPlane = new Plane(Vector3.up, 0);
 		private bool _dragStartedOnUI = false;
+        public float maxZoomer = 7f;
 
 		void Awake()
 		{
@@ -133,10 +134,18 @@
 
 		void ZoomMapUsingTouchOrMouse(float zoomFactor)
 		{
-			var zoom = Mathf.Max(0.0f, Mathf.Min(_mapManager.Zoom + zoomFactor * _zoomSpeed, 21.0f));
-			if (Math.Abs(zoom - _mapManager.Zoom) > 0.0f)
+            var zoom = 0f;
+            zoom = Mathf.Max(0.0f, Mathf.Min(_mapManager.Zoom + zoomFactor * _zoomSpeed, 21.0f));
+            if (zoom < maxZoomer)
+            {
+                zoom = Mathf.Clamp(_mapManager.Zoom, Mathf.Max(0.0f, Mathf.Min(_mapManager.Zoom + zoomFactor * _zoomSpeed, 21.0f)), maxZoomer);
+            }
+
+                Debug.Log(maxZoomer);
+            if (Math.Abs(zoom - _mapManager.Zoom) > 0.0f)
 			{
 				_mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
+
 			}
 		}
 
