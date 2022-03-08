@@ -16,6 +16,7 @@ namespace Hutspot.Minigames.HunebedGame
 
 		[SerializeField] private float _fallDistance = 5f;
 		[SerializeField] private HunebedBehaviour _hunebedPrefab;
+		[SerializeField] private DeathScreen _deathScreen;
 		
 		private HunebedBehaviour _currentHunebed;
 		private HunebedBehaviour _previousHunebed;
@@ -45,6 +46,7 @@ namespace Hutspot.Minigames.HunebedGame
 			_currentHunebed.transform.localScale = new Vector3(hunebedScale, 1f, 1f);
 
 			_currentHunebed.OnLand += OnLandEventHandler;
+			_currentHunebed.OnDie += OnDeathHandler;
 		}
 
 		private IEnumerator MoveCamera()
@@ -65,6 +67,21 @@ namespace Hutspot.Minigames.HunebedGame
 			}
 
 			yield return null;
+		}
+
+		private void OnDeathHandler()
+		{
+			const string highscoreSaveLocation = "HunebedHighScore";
+
+			bool isHighscore = PlayerPrefs.GetInt(highscoreSaveLocation) < Score;
+			string message = isHighscore ? "New highscore!" : "You died :(";
+
+			_deathScreen.Show(message, Score, isHighscore ? "" : $"Highscore: {PlayerPrefs.GetInt(highscoreSaveLocation)}");
+
+			if(isHighscore)
+			{
+				PlayerPrefs.SetInt("HunebedHighScore", Score);
+			}
 		}
 
 		private void OnLandEventHandler()
