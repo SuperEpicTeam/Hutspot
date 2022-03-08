@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Hutspot.Minigames.HunebedGame
 {
+	[RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
 	public class HunebedBehaviour : MonoBehaviour
 	{
 		[SerializeField] private BoxCollider2D _leftVerticleStone;
@@ -102,26 +103,20 @@ namespace Hutspot.Minigames.HunebedGame
 
 			float length = Mathf.Abs(xMax.x - xMin.x);
 
-			float x = (xMin.x - boundsMin.x) / _pixelSizeWorldSpace;
-			float width = length / _pixelSizeWorldSpace;
-
-			Rect rect = new Rect(x, 0f, width, _hunebedStoneSprite.height);
-			_renderer.sprite = Sprite.Create(_hunebedStoneSprite, rect, Vector2.one * 0.5f);
-
 			transform.SetPositionAndRotation(new Vector3(xMin.x + length / 2, transform.position.y), Quaternion.identity);
-			_collider.size = new Vector2(length, _collider.size.y);
+			_collider.size = new Vector2(length * (1f / transform.localScale.x), _collider.size.y);
 		}
 
 		private void ShowVerticleStones()
 		{
-			float xLeft = transform.position.x - _collider.size.x / 2;
-			float xRight = transform.position.x + _collider.size.x / 2;
+			float xLeft = transform.position.x - _collider.bounds.extents.x;
+			float xRight = transform.position.x + _collider.bounds.extents.x;
 
 			float stoneHeight = _leftVerticleStone.size.y;
 			float yPos = transform.position.y + stoneHeight / 2 + _collider.size.y / 2;
 
-			xLeft += _leftVerticleStone.size.x * _leftVerticleStone.transform.localScale.x / 2;
-			xRight -= _rightVerticleStone.size.x * _rightVerticleStone.transform.localScale.x / 2;
+			xLeft += _leftVerticleStone.bounds.extents.x;
+			xRight -= _rightVerticleStone.bounds.extents.x;
 
 			_leftVerticleStone.transform.position = new Vector3(xLeft, yPos);
 			_rightVerticleStone.transform.position = new Vector3(xRight, yPos);
