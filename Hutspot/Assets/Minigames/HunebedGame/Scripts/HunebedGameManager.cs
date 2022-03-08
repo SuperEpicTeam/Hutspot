@@ -5,14 +5,19 @@ namespace Hutspot.Minigames.HunebedGame
 	public class HunebedGameManager : MonoBehaviour
 	{
 		public static HunebedGameManager Instance { get; private set; }
-		
+
+		public delegate void OnScoreIncrementEvent();
+
+		public event OnScoreIncrementEvent OnScoreIncrement;
+
 		public int Score { get; private set; }
+		public float PreviousY { get; private set; }
 
 		[SerializeField] private float _fallDistance = 5f;
 		[SerializeField] private HunebedBehaviour _hunebedPrefab;
 		
 		private HunebedBehaviour _currentHunebed;
-		private float _hunebedScale = 1f;
+		private HunebedBehaviour _previousHunebed;
 
 		private void Awake()
 		{
@@ -29,20 +34,22 @@ namespace Hutspot.Minigames.HunebedGame
 		private void Start()
 		{
 			float yPos = _currentHunebed != null ? _currentHunebed.transform.position.y + _fallDistance : 0f;
-			HunebedBehaviour previousHunebed = _currentHunebed;
+			_previousHunebed = _currentHunebed;
+			PreviousY = _previousHunebed != null ? _previousHunebed.transform.position.y : float.NegativeInfinity;
 
 			Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, yPos - _fallDistance / 2f, Camera.main.transform.position.z);
-			_currentHunebed = Instantiate(_hunebedPrefab, Vector3.up * yPos, Quaternion.identity);
-			_hunebedScale = previousHunebed != null ? GetHunebedWidth(_currentHunebed, previousHunebed) : _hunebedScale;
-			_currentHunebed.transform.localScale = new Vector3(_hunebedScale, 1f, 1f);
+			_currentHunebed = Instantiate(_hunebedPrefab, new Vector3(transform.position.x, yPos), Quaternion.identity);
+			float hunebedScale = _previousHunebed != null ? GetHunebedWidth(_currentHunebed, _previousHunebed) : 1f;
+			_currentHunebed.transform.localScale = new Vector3(hunebedScale, 1f, 1f);
 
-			_currentHunebed.OnLand += OnLand;
+			_currentHunebed.OnLand += OnLandEventHandler;
 		}
 		
-		private void OnLand()
+		private void OnLandEventHandler()
 		{
-			_currentHunebed.OnLand -= OnLand;
 			Score++;
+			OnScoreIncrement?.Invoke();
+			_currentHunebed.OnLand -= OnLandEventHandler;
 			Start();
 		}
 
@@ -51,7 +58,6 @@ namespace Hutspot.Minigames.HunebedGame
 			float xBounds = previousHunebed.gameObject.GetComponent<BoxCollider2D>().bounds.size.x;
 			float originalSize = hunebed.gameObject.GetComponent<BoxCollider2D>().bounds.size.x;
 
-			//TODO return value between 0 - 1 as hunebed scale
 			return 1f / originalSize * xBounds;
 		}
 	}

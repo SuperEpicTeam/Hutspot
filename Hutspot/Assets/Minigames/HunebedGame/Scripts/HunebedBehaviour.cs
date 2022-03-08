@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hutspot.Minigames.HunebedGame
 {
-	[RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
+	[RequireComponent(typeof(BoxCollider2D))]
 	public class HunebedBehaviour : MonoBehaviour
 	{
 		[SerializeField] private BoxCollider2D _leftVerticleStone;
@@ -12,10 +12,8 @@ namespace Hutspot.Minigames.HunebedGame
 		private float _levelWidth;
 		private Vector2 _direction;
 		private bool _isStatic;
-		private float _pixelSizeWorldSpace;
 
 		private BoxCollider2D _collider;
-		private SpriteRenderer _renderer;
 		private Rigidbody2D _rigidBody;
 
 		public delegate void OnLandEvent();
@@ -26,32 +24,27 @@ namespace Hutspot.Minigames.HunebedGame
 		private void Awake()
 		{
 			_collider = transform.GetComponent<BoxCollider2D>();
-			_renderer = transform.GetComponent<SpriteRenderer>();
 
 			_leftVerticleStone.gameObject.SetActive(false);
 			_rightVerticleStone.gameObject.SetActive(false);
-		}
 
-		private void Start()
-		{
 			_levelWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
-			_pixelSizeWorldSpace = _collider.bounds.size.x / _hunebedStoneSprite.width;
 		}
 
 		private void Update()
 		{
 			const int minimumSpeed = 1;
-			const float widthMargin = 5f;
+			const float moveSpeedMultiplier = 0.1f;
 
 			if(!_isStatic)
 			{
 				//Get the camera bounds to check if we have to flip our velocity
-				_direction = (_direction == Vector2.left && transform.position.x > -_levelWidth + widthMargin)
-							|| transform.position.x > _levelWidth - widthMargin
+				_direction = (_direction == Vector2.left && transform.position.x > -_levelWidth + _collider.bounds.extents.x)
+							|| transform.position.x > _levelWidth - _collider.bounds.extents.x
 							? Vector2.left : Vector2.right;
 
 				//move the stone left - right, make the velocity based on the score
-				transform.Translate(_direction * (minimumSpeed + HunebedGameManager.Instance.Score) * Time.deltaTime);
+				transform.Translate(_direction * (minimumSpeed + HunebedGameManager.Instance.Score * moveSpeedMultiplier) * Time.deltaTime);
 				
 				//Handle input
 				if (Input.GetMouseButton(0))
@@ -59,6 +52,14 @@ namespace Hutspot.Minigames.HunebedGame
 					_rigidBody = gameObject.AddComponent<Rigidbody2D>();
 					_rigidBody.freezeRotation = true;
 					_isStatic = true;
+				}
+			} 
+			else if (_rigidBody != null)
+			{
+				if (transform.position.y < HunebedGameManager.Instance.PreviousY)
+				{
+					OnDie?.Invoke();
+					Destroy(this.gameObject);
 				}
 			}
 		}
