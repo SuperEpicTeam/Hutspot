@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Hutspot.Minigames.HunebedGame
@@ -37,14 +38,35 @@ namespace Hutspot.Minigames.HunebedGame
 			_previousHunebed = _currentHunebed;
 			PreviousY = _previousHunebed != null ? _previousHunebed.transform.position.y : float.NegativeInfinity;
 
-			Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, yPos - _fallDistance / 2f, Camera.main.transform.position.z);
+			StartCoroutine(MoveCamera());
+
 			_currentHunebed = Instantiate(_hunebedPrefab, new Vector3(transform.position.x, yPos), Quaternion.identity);
 			float hunebedScale = _previousHunebed != null ? GetHunebedWidth(_currentHunebed, _previousHunebed) : 1f;
 			_currentHunebed.transform.localScale = new Vector3(hunebedScale, 1f, 1f);
 
 			_currentHunebed.OnLand += OnLandEventHandler;
 		}
-		
+
+		private IEnumerator MoveCamera()
+		{
+			float yPos = _currentHunebed != null ? _currentHunebed.transform.position.y + _fallDistance : 0f;
+			yPos -= _fallDistance / 2f;
+
+			float initialPos = Camera.main.transform.position.y;
+			float lerpAlpha = 0f;
+
+			while (Camera.main.transform.position.y < yPos)
+			{
+				float y = Mathf.Lerp(initialPos, yPos, lerpAlpha);
+				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, y, Camera.main.transform.position.z);
+				lerpAlpha += Time.deltaTime;
+
+				yield return new WaitForEndOfFrame();
+			}
+
+			yield return null;
+		}
+
 		private void OnLandEventHandler()
 		{
 			Score++;
