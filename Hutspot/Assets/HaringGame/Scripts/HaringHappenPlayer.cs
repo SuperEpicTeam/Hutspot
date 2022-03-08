@@ -7,17 +7,18 @@ public class HaringHappenPlayer : MonoBehaviour
 	private int _health = 3;
 
 	[SerializeField] private Text _scoreText;
-	[SerializeField] private HaringHappenTimer _timer;
+	[SerializeField] private HaringHappenManager _haringHappenManager;
 	[SerializeField] private GameObject _healtBar;
 	[SerializeField] private Image[] _healthImages;
 
 	private void OnTriggerEnter(Collider other)
 	{
-			/*if (_timer.GetTimerActivity())*/ if (_health > 0)
+			if (_health > 0)
 			{
 			if (other.gameObject.GetComponent<Haring>())
 			{
 				_points++;
+				Time.timeScale += 0.01f;
 				_scoreText.text = "Score: " + _points.ToString();
 				Destroy(other.gameObject);
 			}
@@ -51,7 +52,7 @@ public class HaringHappenPlayer : MonoBehaviour
 		else
 		{
 			_healthImages[0].enabled = false;
-			StartCoroutine(_timer.GameOver(gameObject.GetComponent<HaringHappenPlayer>()));
+			_haringHappenManager.GameOver(gameObject.GetComponent<HaringHappenPlayer>());
 		}
 	}
 }

@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 	[SerializeField] private Button _openMenuButton;
 	[SerializeField] private Button _closeMenuButton;
 	[SerializeField] private Button _quitMinigameButton;
+	private float _previousTimeScale;
 
 	private void Awake()
 	{
@@ -18,13 +19,14 @@ public class PauseMenu : MonoBehaviour
 
 	private void OpenPauseMenu()
 	{
+		_previousTimeScale = Time.timeScale;
 		Time.timeScale = 0f;
 		_pauzeMenu.SetActive(true);
 	}
 
 	private void ClosePauseMenu()
 	{
-		Time.timeScale = 1f;
+		Time.timeScale = _previousTimeScale;
 		_pauzeMenu.SetActive(false);
 	}
 

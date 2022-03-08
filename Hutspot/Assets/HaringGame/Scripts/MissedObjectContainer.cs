@@ -2,7 +2,7 @@
 
 public class MissedObjectContainer : MonoBehaviour
 {
-	[SerializeField] private HaringHappenTimer _timer;
+	[SerializeField] private HaringHappenManager _haringHappenManager;
 	[SerializeField] private HaringHappenPlayer _player;
 
 	private void OnTriggerEnter(Collider other)

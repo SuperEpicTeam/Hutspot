@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6415b49c9b349884a9f5945660f727a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timer: {fileID: 1987341844}
+  _haringHappenManager: {fileID: 1987341844}
   _player: {fileID: 1471810243}
 --- !u!1 &963194225
 GameObject:
@@ -1762,7 +1762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1875712938}
-  _timer: {fileID: 1987341844}
+  _haringHappenManager: {fileID: 1987341844}
   _healtBar: {fileID: 1644042100}
   _healthImages:
   - {fileID: 1456001149}
@@ -2030,7 +2030,7 @@ GameObject:
   - component: {fileID: 1987341845}
   - component: {fileID: 1987341844}
   m_Layer: 0
-  m_Name: Timer
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
