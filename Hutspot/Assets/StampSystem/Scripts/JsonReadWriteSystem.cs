@@ -15,8 +15,11 @@ public class JsonReadWriteSystem : MonoBehaviour
 
 	private void Awake()
 	{
-		_activationButton.onClick.AddListener(ShowStampBook);
-		_deactivationButton.onClick.AddListener(HideStampBook);
+		if(_deactivationButton != null && _activationButton != null){
+			_activationButton.onClick.AddListener(ShowStampBook);
+			_deactivationButton.onClick.AddListener(HideStampBook);
+		}
+
 	}
 
 	/// <summary>

@@ -8,7 +8,7 @@ public class Stamp : MonoBehaviour
 
 	public void ShowStamp()
 	{
-		_stampImage.color = Color.green;
+		_stampImage.enabled = true;
 	}
 
 	public int GetStampID()

@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/GlobalMap/GlobalMap.unity
+    guid: 75fb4791d654f714ab8f5f832a83ff8a
   - enabled: 1
-    path: Assets/QRCodeScanner/Scenes/Monumentje1.unity
-    guid: 1931db6e72fecef43a0195ab01439227
+    path: Assets/Minigames/HaringGame/Scenes/Monumentje1.unity
+    guid: 25990779d4122be4d8beafde8f9d3c05
+  - enabled: 1
+    path: Assets/Minigames/HunebedGame/Scenes/Monumentje2.unity
+    guid: 18ef93f8ff1b2df419bf6081ca002769
   m_configObjects: {}
