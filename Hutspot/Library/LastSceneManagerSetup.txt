@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
+- path: Assets/Minigames/HunebedGame/Scenes/HunebedGame.unity
+=======
 - path: Assets/GlobalMap/GlobalMap.unity
+>>>>>>> develop
   isLoaded: 1
   isActive: 1
   isSubScene: 0
