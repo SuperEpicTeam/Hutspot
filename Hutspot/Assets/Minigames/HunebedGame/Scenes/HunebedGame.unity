@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 8385714746270294476, guid: 09a7dda8131446145a2222cab8813e0e,
+        type: 3}
+      propertyPath: _mainSceneName
+      value: GlobalMap
+      objectReference: {fileID: 0}
     - target: {fileID: 8385714746270294479, guid: 09a7dda8131446145a2222cab8813e0e,
         type: 3}
       propertyPath: m_Pivot.x
