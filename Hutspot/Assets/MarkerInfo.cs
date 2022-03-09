@@ -39,11 +39,13 @@ public class MarkerInfo : MonoBehaviour
         else
         {
             GetComponentInChildren<Canvas>().enabled = true;
+            GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
     }
 
     public void HideInfo()
     {
         GetComponentInChildren<Canvas>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 }
