@@ -1,6 +1,16 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+<<<<<<< HEAD
+    - DragFingerMove
+    - Haring
+    - HaringHappenManager
+    - HaringHappenPlayer
+    - MissedObjectContainer
+    - PauseMenu
+    - QRCodeScanner
+    - SpawnSystem
+=======
     - DrentheMarker
 <<<<<<< HEAD
     - Hutspot.Minigames.DeathScreen
@@ -36,6 +46,7 @@ ScriptsOnlyBuild:
     - MarkerInfo
     - QRCodeScanner
     - ScriptablePalette
+>>>>>>> develop
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -73,9 +84,14 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Mask
     - UnityEngine.UI.RawImage
     - UnityEngine.UI.Text
+<<<<<<< HEAD
+  sceneClasses:
+    Assets/Minigames/HaringGame/Scenes/Monumentje1.unity:
+=======
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/GlobalMap/GlobalMap.unity:
+>>>>>>> develop
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -94,7 +110,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+<<<<<<< HEAD
+    - Class: 54
+=======
     - Class: 49
+>>>>>>> develop
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
@@ -104,12 +124,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+<<<<<<< HEAD
+=======
     - Class: 90
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
     - Class: 102
       Script: {instanceID: 0}
+>>>>>>> develop
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -212,6 +235,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11918}
     - Class: 114
+<<<<<<< HEAD
+      Script: {instanceID: 11484}
+    - Class: 114
+      Script: {instanceID: 11586}
+    - Class: 114
+      Script: {instanceID: 11632}
+    - Class: 114
+      Script: {instanceID: 11856}
+    - Class: 114
+      Script: {instanceID: 12130}
+    - Class: 114
+      Script: {instanceID: 12696}
+    - Class: 114
+      Script: {instanceID: 12800}
+    - Class: 114
+      Script: {instanceID: 12830}
+    - Class: 114
+      Script: {instanceID: 12846}
+    - Class: 114
+      Script: {instanceID: 13358}
+    - Class: 114
+      Script: {instanceID: 13392}
+    - Class: 114
+      Script: {instanceID: 13412}
+    - Class: 114
+      Script: {instanceID: 13842}
+    - Class: 115
+      Script: {instanceID: 0}
+=======
       Script: {instanceID: 12038}
     - Class: 114
       Script: {instanceID: 12100}
@@ -292,12 +344,16 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 124
       Script: {instanceID: 0}
+>>>>>>> develop
     - Class: 128
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
+<<<<<<< HEAD
+=======
     - Class: 136
       Script: {instanceID: 0}
+>>>>>>> develop
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
@@ -347,6 +403,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16634}
     - Class: 114
+<<<<<<< HEAD
+      Script: {instanceID: 11632}
+    - Class: 114
+      Script: {instanceID: 11858}
+    - Class: 114
+      Script: {instanceID: 12130}
+    - Class: 114
+      Script: {instanceID: 12174}
+    - Class: 114
+      Script: {instanceID: 12622}
+    - Class: 114
+      Script: {instanceID: 12696}
+    - Class: 114
+      Script: {instanceID: 12728}
+    - Class: 114
+      Script: {instanceID: 13020}
+    - Class: 114
+      Script: {instanceID: 13038}
+    - Class: 114
+      Script: {instanceID: 13272}
+    - Class: 114
+      Script: {instanceID: 13358}
+    - Class: 114
+      Script: {instanceID: 13570}
+    - Class: 114
+      Script: {instanceID: 13842}
+=======
       Script: {instanceID: 16970}
     - Class: 114
       Script: {instanceID: 17038}
@@ -370,6 +453,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 20074}
     - Class: 114
       Script: {instanceID: 20100}
+>>>>>>> develop
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -571,6 +655,12 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+      Hash: 794cb64c883cce9a1311d1ae5ed572dd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HaringHappenPlayer
+=======
       Hash: e8e1d68b0ad2753021d9bac3fefc8005
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.Map
@@ -599,6 +689,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Factories
     className: TerrainFactoryBase
+>>>>>>> develop
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -800,6 +891,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: a2dd46a7ecb87b95d659b8b0f506d158
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseMenu
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -1244,14 +1341,25 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+      Hash: 7641dd3067ceddb9bc3fd1f4c0883e51
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpawnSystem
+=======
       Hash: 3bdedf08b14e08d680b95320e83444f1
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration
     className: KdTreeCollection
+>>>>>>> develop
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
+<<<<<<< HEAD
+    namespaceName: 
+    className: DragFingerMove
+=======
     namespaceName: Mapbox.Unity.MeshGeneration.Interfaces
     className: LocationPrefabsLayerVisualizer
   - hash:
@@ -1260,6 +1368,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MeshGenerationBase
+>>>>>>> develop
   - hash:
       serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
@@ -1268,6 +1377,12 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+      Hash: 2539a76bd383e5f7a0db2c6f7f457a0d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HaringHappenManager
+=======
       Hash: 8491d6dc91856701b1cda4ed3dbaa6a0
     assemblyName: Unity.VectorGraphics.dll
     namespaceName: Unity.VectorGraphics
@@ -1302,6 +1417,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.Location
     className: AngleSmoothingNoOp
+>>>>>>> develop
   - hash:
       serializedVersion: 2
       Hash: f64fd37da5cb89243ec68b5026d70bb8
@@ -1491,6 +1607,24 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Haring
+  - hash:
+      serializedVersion: 2
+      Hash: 90d3695197d10e7e28ce77fd4e3c439b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MissedObjectContainer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Hutspot
+=======
       Hash: 82e649217a87767778e4985365512671
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Examples
@@ -1561,6 +1695,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Examples
     className: PoiLabelTextSetter
+>>>>>>> develop
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1782,19 +1917,31 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+      Hash: 8491d6dc91856701b1cda4ed3dbaa6a0
+    assemblyName: Unity.VectorGraphics.dll
+    namespaceName: Unity.VectorGraphics
+    className: SVGImage
+=======
       Hash: 0855a9d1fe3a81abf4812b7ac80389b6
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Modifiers
     className: ModifierStack
+>>>>>>> develop
   platform: 13
   scenePathNames:
   - Assets/GlobalMap/GlobalMap.unity
 <<<<<<< HEAD
   - Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity
+<<<<<<< HEAD
+  - Assets/Minigames/HaringGame/Scenes/Monumentje1.unity
+  playerPath: D:/unity projects/HutspotBuilds/Hutspot.apk
+=======
   - Assets/QRCodeScanner/Scenes/Monumentje1.unity
   - Assets/Minigames/HunebedGame/Scenes/HunebedGame.unity
   playerPath: D:/Projecten/ProjectBuilds/hutsapot.apk
 =======
   - Assets/QRCodeScanner/Scenes/Monumentje1.unity
   playerPath: D:/Builds/Phone/Hutspot/MapQr.apk
+>>>>>>> develop
 >>>>>>> develop

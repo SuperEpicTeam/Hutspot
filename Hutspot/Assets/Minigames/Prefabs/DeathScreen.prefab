@@ -91,7 +91,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.85
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.15
+  m_fontSize: 72
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 8385714746270294479}
   - component: {fileID: 8385714746270294477}
   - component: {fileID: 8385714746270294478}
-  - component: {fileID: 8385714746270294476}
+  - component: {fileID: 6608065751170023362}
   m_Layer: 5
   m_Name: DeathScreen
   m_TagString: Untagged
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8385714746270294476
+--- !u!114 &6608065751170023362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67c04a805ce94f4881a60cffa5fc68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainSceneName: 
+  _mainSceneName: GlobalMap
   _messageText: {fileID: 8385714744680498170}
   _scoreText: {fileID: 8385714745754252936}
   _additionalInformation: {fileID: 8385714745376058480}
