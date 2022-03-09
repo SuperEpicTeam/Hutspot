@@ -2,6 +2,8 @@
 -a="D:\Team02\Hutspot\Hutspot\Library\PlayerScriptAssemblies\UnityEngine.TestRunner.dll"
 -a="D:\Team02\Hutspot\Hutspot\Library\PlayerScriptAssemblies\Unity.Timeline.dll"
 -a="D:\Team02\Hutspot\Hutspot\Library\PlayerScriptAssemblies\Unity.TextMeshPro.dll"
+-a="D:\Team02\Hutspot\Hutspot\Library\PlayerScriptAssemblies\Unity.InternalAPIEngineBridge.003.dll"
+-a="D:\Team02\Hutspot\Hutspot\Library\PlayerScriptAssemblies\Unity.VectorGraphics.dll"
 -a="D:\Team02\Hutspot\Hutspot\Library\PlayerScriptAssemblies\UnityEngine.UI.dll"
 -a="D:\Team02\Hutspot\Hutspot\Assets\ThirdParty\Mapbox\Core\Plugins\Mapbox\MapboxAccounts\net4x\MapboxAccountsUnity.dll"
 -a="D:\Team02\Hutspot\Hutspot\Assets\ThirdParty\Mapbox\Core\Plugins\ThirdParty\Mapbox.Json\Portable\Mapbox.Json.dll"
