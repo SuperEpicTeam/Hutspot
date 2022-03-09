@@ -1,27 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Hutspot.Minigames;
 
 public class HaringHappenManager : MonoBehaviour
 {
 	[SerializeField] private Text _gameOverText;
 	[SerializeField] private Text _highScoreText;
 	[SerializeField] private int _wincondition = 10;
+	[SerializeField] private DeathScreen _deathScreen;
 
 	public void GameOver(HaringHappenPlayer player)
 	{
-		_gameOverText.enabled = true;
-		_highScoreText.enabled = true;
+		//_gameOverText.enabled = true;
+		//_highScoreText.enabled = true;
 
 		Time.timeScale = 1f;
 
-		if (player.GetPlayerPoints() >= _wincondition)
-		{
-			//doe hier de gekke trophy functionalteit
-			_gameOverText.text = "Winner!";
-		}
+		_deathScreen.Show(player.GetPlayerPoints() >= _wincondition ? "Winner!" : "You lost! :(", player.GetPlayerPoints(), $"Highscore: {PlayerPrefs.GetInt("HaringHappenHighScore")}");
 
 		CheckHighScore(player);
-		_highScoreText.text = "Highscore" + PlayerPrefs.GetInt("HaringHappenHighScore").ToString();
+		//_highScoreText.text = "Highscore" + PlayerPrefs.GetInt("HaringHappenHighScore").ToString();
 	}
 
 	/// <summary>
