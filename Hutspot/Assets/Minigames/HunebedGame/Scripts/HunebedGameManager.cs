@@ -43,10 +43,19 @@ namespace Hutspot.Minigames.HunebedGame
 
 			_currentHunebed = Instantiate(_hunebedPrefab, new Vector3(transform.position.x, yPos), Quaternion.identity);
 			float hunebedScale = _previousHunebed != null ? GetHunebedWidth(_currentHunebed, _previousHunebed) : 1f;
-			_currentHunebed.transform.localScale = new Vector3(hunebedScale, 1f, 1f);
 
-			_currentHunebed.OnLand += OnLandEventHandler;
-			_currentHunebed.OnDie += OnDeathHandler;
+			if (hunebedScale < 0.25f)
+			{
+				Destroy(_currentHunebed);
+				OnDeathHandler();
+			}
+			else
+			{
+				_currentHunebed.transform.localScale = new Vector3(hunebedScale, 1f, 1f);
+
+				_currentHunebed.OnLand += OnLandEventHandler;
+				_currentHunebed.OnDie += OnDeathHandler;
+			}
 		}
 
 		private IEnumerator MoveCamera()

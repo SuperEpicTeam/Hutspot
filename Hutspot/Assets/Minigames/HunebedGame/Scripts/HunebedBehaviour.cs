@@ -7,7 +7,6 @@ namespace Hutspot.Minigames.HunebedGame
 	{
 		[SerializeField] private BoxCollider2D _leftVerticleStone;
 		[SerializeField] private BoxCollider2D _rightVerticleStone;
-		[SerializeField] private Texture2D _hunebedStoneSprite;
 
 		private float _levelWidth;
 		private Vector2 _direction;
@@ -113,8 +112,10 @@ namespace Hutspot.Minigames.HunebedGame
 			float xLeft = transform.position.x - _collider.bounds.extents.x;
 			float xRight = transform.position.x + _collider.bounds.extents.x;
 
-			float stoneHeight = _leftVerticleStone.size.y;
-			float yPos = transform.position.y + stoneHeight / 2 + _collider.size.y / 2;
+			_leftVerticleStone.transform.localScale = new Vector3(1f, transform.localScale.x);
+			_rightVerticleStone.transform.localScale = new Vector3(1f, transform.localScale.x);
+
+			float yPos = transform.position.y + _collider.bounds.extents.y + _leftVerticleStone.bounds.extents.y;
 
 			xLeft += _leftVerticleStone.bounds.extents.x;
 			xRight -= _rightVerticleStone.bounds.extents.x;
