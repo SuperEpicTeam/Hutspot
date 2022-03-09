@@ -1,6 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Hutspot.Minigames.DeathScreen
+    - Hutspot.Minigames.HunebedGame.HunebedBehaviour
+    - Hutspot.Minigames.HunebedGame.HunebedGameManager
+    - Hutspot.Minigames.HunebedGame.ScoreVisualizer
     - QRCodeScanner
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -10,12 +14,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -29,7 +27,77 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Text
   sceneClasses:
+    Assets/Minigames/HunebedGame/Scenes/HunebedGame.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 14978}
+    - Class: 114
+      Script: {instanceID: 15214}
+    - Class: 114
+      Script: {instanceID: 15262}
+    - Class: 114
+      Script: {instanceID: 15768}
+    - Class: 114
+      Script: {instanceID: 16028}
+    - Class: 114
+      Script: {instanceID: 16166}
+    - Class: 114
+      Script: {instanceID: 16356}
+    - Class: 114
+      Script: {instanceID: 16362}
+    - Class: 114
+      Script: {instanceID: 16686}
+    - Class: 114
+      Script: {instanceID: 16952}
+    - Class: 114
+      Script: {instanceID: 17038}
+    - Class: 114
+      Script: {instanceID: 17542}
+    - Class: 114
+      Script: {instanceID: 17562}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/QRCodeScanner/Scenes/Monumentje1.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -50,13 +118,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11368}
+      Script: {instanceID: 14978}
     - Class: 114
-      Script: {instanceID: 11854}
+      Script: {instanceID: 15490}
     - Class: 114
-      Script: {instanceID: 12724}
+      Script: {instanceID: 16392}
     - Class: 114
-      Script: {instanceID: 13348}
+      Script: {instanceID: 17038}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -89,33 +157,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11368}
+      Script: {instanceID: 14978}
     - Class: 114
-      Script: {instanceID: 11630}
+      Script: {instanceID: 15262}
     - Class: 114
-      Script: {instanceID: 11854}
+      Script: {instanceID: 15490}
     - Class: 114
-      Script: {instanceID: 12126}
+      Script: {instanceID: 15768}
     - Class: 114
-      Script: {instanceID: 12170}
+      Script: {instanceID: 15812}
     - Class: 114
-      Script: {instanceID: 12618}
+      Script: {instanceID: 16276}
     - Class: 114
-      Script: {instanceID: 12692}
+      Script: {instanceID: 16356}
     - Class: 114
-      Script: {instanceID: 12724}
+      Script: {instanceID: 16392}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 16686}
     - Class: 114
-      Script: {instanceID: 13028}
+      Script: {instanceID: 16704}
     - Class: 114
-      Script: {instanceID: 13262}
+      Script: {instanceID: 16952}
     - Class: 114
-      Script: {instanceID: 13348}
+      Script: {instanceID: 17038}
     - Class: 114
-      Script: {instanceID: 13554}
+      Script: {instanceID: 17268}
     - Class: 114
-      Script: {instanceID: 13826}
+      Script: {instanceID: 17542}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -327,6 +395,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Hutspot.Minigames.HunebedGame
+    className: ScoreVisualizer
+  - hash:
+      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -343,6 +417,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: d11899fa5e075eecb7ca39e5e997deeb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Hutspot.Minigames.HunebedGame
+    className: HunebedGameManager
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -369,6 +449,12 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
+      Hash: 81278feddeae68300c832a49870a5058
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Hutspot.Minigames
+    className: DeathScreen
+  - hash:
+      serializedVersion: 2
       Hash: f84d945e5e1ca985698660fc26e9657f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -379,6 +465,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 8491d6dc91856701b1cda4ed3dbaa6a0
+    assemblyName: Unity.VectorGraphics.dll
+    namespaceName: Unity.VectorGraphics
+    className: SVGImage
   - hash:
       serializedVersion: 2
       Hash: f64fd37da5cb89243ec68b5026d70bb8
@@ -531,6 +623,12 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
+      Hash: 6eabce38d4286b2a6ae9a59f88b939d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Hutspot.Minigames.HunebedGame
+    className: HunebedBehaviour
+  - hash:
+      serializedVersion: 2
       Hash: aa88ae22474df55295327e4ee99e5a24
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -563,4 +661,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity
   - Assets/QRCodeScanner/Scenes/Monumentje1.unity
-  playerPath: D:/unity projects/HutspotBuilds/Hutspot.apk
+  - Assets/Minigames/HunebedGame/Scenes/HunebedGame.unity
+  playerPath: D:/Projecten/ProjectBuilds/hutsapot.apk

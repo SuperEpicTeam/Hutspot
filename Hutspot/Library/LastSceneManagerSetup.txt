@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/QRCodeScanner/Scenes/QRCodeScannerScene.unity
+- path: Assets/Minigames/HunebedGame/Scenes/HunebedGame.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
