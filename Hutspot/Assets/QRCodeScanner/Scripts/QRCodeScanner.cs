@@ -15,15 +15,13 @@ public class QRCodeScanner : MonoBehaviour
 	[SerializeField] private Canvas _uiCanvas;
 	[SerializeField] private TextMeshProUGUI _scannerPlayerFeedback;
 
-	[SerializeField] private Button _activationButton;
-	[SerializeField] private Button _deactivationButton;
+	[SerializeField] private Button _toggleButton;
 
 	private WebCamTexture _cameraTexture;
 
 	private void Awake()
 	{
-		_activationButton.onClick.AddListener(SetUpCamera);
-		_deactivationButton.onClick.AddListener(StopScanning);
+		_toggleButton.onClick.AddListener(ToggleCamera);
 	}
 
 	void Update()
@@ -45,6 +43,18 @@ public class QRCodeScanner : MonoBehaviour
 
 		int orientation = -_cameraTexture.videoRotationAngle;
 		_rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
+	}
+
+	private void ToggleCamera()
+	{
+		if(!_uiCanvas.gameObject.activeSelf)
+		{
+			SetUpCamera();
+		}
+		else
+		{
+			StopScanning();
+		}
 	}
 
 	/// <summary>

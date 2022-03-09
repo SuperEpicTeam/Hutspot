@@ -14,10 +14,14 @@ namespace Hutspot.Minigames.HunebedGame
 		public int Score { get; private set; }
 		public float PreviousY { get; private set; }
 
+		[SerializeField] private int _winCondition = 15;
+
 		[SerializeField] private float _fallDistance = 5f;
 		[SerializeField] private HunebedBehaviour _hunebedPrefab;
 		[SerializeField] private DeathScreen _deathScreen;
-		
+		[SerializeField] private JsonReadWriteSystem _saveSystem;
+
+
 		private HunebedBehaviour _currentHunebed;
 		private HunebedBehaviour _previousHunebed;
 
@@ -84,6 +88,11 @@ namespace Hutspot.Minigames.HunebedGame
 
 			bool isHighscore = PlayerPrefs.GetInt(highscoreSaveLocation) < Score;
 			string message = isHighscore ? "New highscore!" : "You died :(";
+
+			if (Score >= _winCondition)
+			{
+				_saveSystem.SaveTrophies((int)TrophyEnum.Hunebed);
+			}
 
 			_deathScreen.Show(message, Score, isHighscore ? "" : $"Highscore: {PlayerPrefs.GetInt(highscoreSaveLocation)}");
 

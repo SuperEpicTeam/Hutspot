@@ -26,7 +26,6 @@ public class DrentheMarker : SpawnOnMap
         base.Update();
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("MouseDown");
             // Reset ray with new mouse position
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray);

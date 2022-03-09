@@ -4,25 +4,22 @@ using Hutspot.Minigames;
 
 public class HaringHappenManager : MonoBehaviour
 {
-	[SerializeField] private Text _gameOverText;
-	[SerializeField] private Text _highScoreText;
 	[SerializeField] private int _wincondition = 10;
 	[SerializeField] private DeathScreen _deathScreen;
 	[SerializeField] private JsonReadWriteSystem _saveSystem;
 
 	public void GameOver(HaringHappenPlayer player)
 	{
-		//_gameOverText.enabled = true;
-		//_highScoreText.enabled = true;
-
 		Time.timeScale = 1f;
 
 		_deathScreen.Show(player.GetPlayerPoints() >= _wincondition ? "Winner!" : "You lost! :(", player.GetPlayerPoints(), $"Highscore: {PlayerPrefs.GetInt("HaringHappenHighScore")}");
 
-		if (player.GetPlayerPoints() >= _wincondition) _saveSystem.SaveTrophies(1);
+		if (player.GetPlayerPoints() >= _wincondition)
+		{
+			_saveSystem.SaveTrophies((int) TrophyEnum.Haringhappen);
+		}
 
 		CheckHighScore(player);
-		//_highScoreText.text = "Highscore" + PlayerPrefs.GetInt("HaringHappenHighScore").ToString();
 	}
 
 	/// <summary>

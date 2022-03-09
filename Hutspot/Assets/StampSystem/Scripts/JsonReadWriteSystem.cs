@@ -8,18 +8,15 @@ public class JsonReadWriteSystem : MonoBehaviour
 	[SerializeField] private Stamp[] _stamps;
 	[SerializeField] private GameObject _stampBook;
 
-	[SerializeField] private Button _activationButton;
-	[SerializeField] private Button _deactivationButton;
+	[SerializeField] private Button _toggleButton;
 
 	private List<int> _listToArrayConverter;
 
 	private void Awake()
 	{
-		if(_deactivationButton != null && _activationButton != null){
-			_activationButton.onClick.AddListener(ShowStampBook);
-			_deactivationButton.onClick.AddListener(HideStampBook);
+		if(_toggleButton != null){
+			_toggleButton.onClick.AddListener(ToggleStampBook);
 		}
-
 	}
 
 	/// <summary>
@@ -71,6 +68,18 @@ public class JsonReadWriteSystem : MonoBehaviour
 					_stamps[i].ShowStamp();
 				}
 			}
+		}
+	}
+
+	private void ToggleStampBook()
+	{
+		if(!_stampBook.activeSelf)
+		{
+			ShowStampBook();
+		}
+		else
+		{
+			HideStampBook();
 		}
 	}
 
