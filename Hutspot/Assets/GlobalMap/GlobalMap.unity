@@ -1188,8 +1188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stamps:
-  - {fileID: 1634331169}
   - {fileID: 23550328}
+  - {fileID: 1634331169}
   _stampBook: {fileID: 381964606}
   _toggleButton: {fileID: 1658001410}
 --- !u!4 &1213908609

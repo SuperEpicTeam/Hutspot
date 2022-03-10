@@ -10,8 +10,6 @@ public class JsonReadWriteSystem : MonoBehaviour
 
 	[SerializeField] private Button _toggleButton;
 
-	private List<int> _listToArrayConverter;
-
 	private void Awake()
 	{
 		if(_toggleButton != null){
@@ -24,31 +22,7 @@ public class JsonReadWriteSystem : MonoBehaviour
 	/// </summary>
 	public void SaveTrophies(int thropyIndex)
 	{
-		StampData saveDataNew = new StampData();
-
-		string jsonOld = File.ReadAllText(Application.dataPath + "/StampSystem/Scripts/PlayerStampDataFile.json");
-		StampData saveDataOld = JsonUtility.FromJson<StampData>(jsonOld);
-		_listToArrayConverter = new List<int>();
-
-		for (int i = 0; i < saveDataOld._collectedStamps.Length; i++)
-		{
-			if (saveDataOld._collectedStamps[i] == thropyIndex)
-			{
-				return;
-			}
-			else
-			{
-				_listToArrayConverter.Add(saveDataOld._collectedStamps[i]);
-			}
-		}
-
-		_listToArrayConverter.Add(thropyIndex);
-
-		saveDataNew._collectedStamps = null;
-		saveDataNew._collectedStamps = _listToArrayConverter.ToArray();
-
-		string jsonNew = JsonUtility.ToJson(saveDataNew, true);
-		File.WriteAllText(Application.dataPath + "/StampSystem/Scripts/PlayerStampDataFile.json", jsonNew);
+		PlayerPrefs.SetInt($"trophy{thropyIndex}", 0);
 	}
 
 	/// <summary>
@@ -56,17 +30,11 @@ public class JsonReadWriteSystem : MonoBehaviour
 	/// </summary>
 	private void LoadStamps()
 	{
-		string json = File.ReadAllText(Application.dataPath + "/StampSystem/Scripts/PlayerStampDataFile.json");
-		StampData saveData = JsonUtility.FromJson<StampData>(json);
-
 		for (int i = 0; i < _stamps.Length; i++)
 		{
-			for (int j = 0; j < saveData._collectedStamps.Length; j++)
+			if(PlayerPrefs.HasKey($"trophy{i}"))
 			{
-				if (_stamps[i].GetStampID() == saveData._collectedStamps[j])
-				{
-					_stamps[i].ShowStamp();
-				}
+				_stamps[i].ShowStamp();
 			}
 		}
 	}
